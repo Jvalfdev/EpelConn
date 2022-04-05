@@ -1,9 +1,14 @@
 #pragma once
 //Local includes
-#include "ConnectDB.h"
+
 
 //External Includes
 #include <iostream>
+#include <string>
+#include <string.h>
+#include <vector>
+#include <iterator>
+
 
 
 //MySQL includes
@@ -44,16 +49,9 @@ private:
 	
 	
 public:
-	//Database call
-	
-	 
-
 	
 	//Constructors declaration
-	SQL();
-	
-
-	
+	SQL();	
 	
 	
 	//Setters declaration
@@ -64,10 +62,7 @@ public:
 	void setPass(std::string password);
 	void setPort(std::string port);
 	void setDatabase(std::string database);	
-	void setValue(std::string value);
-	
-	
-	
+	void setValue(std::string value);	
 	
 	
 	//Getters declaration

@@ -62,7 +62,6 @@ void SQL::setValue(std::string value) {
 
 
 //Methods definition
-
 void SQL::query() {
 	try
 	{
