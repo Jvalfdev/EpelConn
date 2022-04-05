@@ -22,13 +22,18 @@ class SQL
 
 {
 private:
+	//Database objects
 	sql::Connection* conn;
 	sql::Statement* stmt;
 	sql::ResultSet* res;
 	sql::Driver* driver;
+
+	//Database variables
 	std::string database;
 	std::string table;
 	std::string field;
+	std::string value;
+	
 	std::string user;
 	std::string password;
 	std::string tcp = "tcp://";
@@ -44,43 +49,48 @@ public:
 	 
 
 	
-	//Constructors
+	//Constructors declaration
 	SQL();
 	
 
-	//Methods
-	void createDatabase(std::string database);
-	void query(std::string database, std :: string field);
-	void insertData();
-	void selectData();
-	void updateData();
-	void deleteData();
-	void dropTable();
-	void connect();
 	
 	
 	
-	//Setters
-	void setDatabase(std::string database);
+	//Setters declaration
 	void setTable(std::string table);
 	void setField(std::string field);
 	void setIp(std::string ip);
 	void setUser(std::string user);
-	void setPassword(std::string password);
+	void setPass(std::string password);
 	void setPort(std::string port);
+	void setDatabase(std::string database);	
+	void setValue(std::string value);
 	
 	
 	
-	//Getters
+	
+	
+	//Getters declaration
 	std::string getDatabase();
 	std::string getTable();
 	std::string getField();
 	std::string getIp();
 	std::string getUser();
-	std::string getPassword();
+	std::string getPass();
 	std::string getPort();
+	std::string getValue();
+
+	//Methods declaration
+	void createDatabase(); //Developing
+	void query();
+	void query(std::string field);
+	void fieldQuery();
+	void connect();
+	void insert();
 	
-	//Destructors 
+	
+	
+	//Destructors declaration 
 	~SQL();
 };
 
