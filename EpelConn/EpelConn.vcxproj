@@ -145,12 +145,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConnectDB.cpp" />
     <ClCompile Include="Queries.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConnectDB.h" />
+    <ClInclude Include="Errors.h" />
     <ClInclude Include="Queries.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

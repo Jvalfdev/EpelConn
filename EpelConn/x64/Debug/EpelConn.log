@@ -1,0 +1,7 @@
+﻿  Queries.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(78,22): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(132,20): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(138,21): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
+  EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\x64\Debug\EpelConn.exe

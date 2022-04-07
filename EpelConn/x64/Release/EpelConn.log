@@ -1,7 +1,14 @@
-﻿  main.cpp
+﻿  Queries.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(79,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(156,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(167,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(190,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(227,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(236,21): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
   Generating code
-  1 of 217 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
+  43 of 197 functions (21.8%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
     16 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\EpelConn\x64\Release\EpelConn.exe
+  EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\x64\Release\EpelConn.exe

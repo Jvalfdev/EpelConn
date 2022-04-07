@@ -1,10 +1,41 @@
 #include "Queries.h"
 
-
+#define LOG(x) std::cout << x << std::endl
 
 //Constructors definition
-SQL::SQL(){
+SQL::SQL() {
 }
+
+//Setters definition
+void SQL::setDatabase(std::string database) {
+	this->database = database;
+}
+
+void SQL::setField(std::string field) {
+	this->field = field;
+}
+void SQL::setTable(std::string table) {
+	this->table = table;
+}
+void SQL::setIp(std::string ip) {
+	this->ip = ip;
+}
+void SQL::setUser(std::string user) {
+	this->user = user;
+}
+void SQL::setPass(std::string password) {
+	this->password = password;
+}
+void SQL::setPort(std::string port) {
+	this->port = port;
+}
+void SQL::setValue(std::string value) {
+	this->value = value;
+}
+//void SQL::setQueryValues(std::vector<std::string>queryValues) {
+//	this->queryValues = queryValues;
+//}
+
 
 //Getters definition
 std::string SQL::getDatabase() {
@@ -31,142 +62,209 @@ std::string SQL::getPort() {
 std::string SQL::getValue() {
 	return value;
 }
-
-
-//Setters definition
-void SQL::setDatabase(std::string database) {
-	this->database = database;
+std::vector <std::string> SQL::getQueryValues() {
+	return queryValues;	
 }
-void SQL::setField(std::string field) {
-	this->field = field;
+int SQL::getDatabaseList(std::vector<std::string>& l_databaseList) {
+	try
+	{
+		std::string query = "SHOW DATABASES;";
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+		l_databaseList.clear();
+		while (res->next()) {
+			l_databaseList.push_back(res->getString(1));
+		}
+	}
+	catch (sql::SQLException& e)
+	{
+		/*std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
+		std::cout << "# ERR: " << e.what();
+		std::cout << " (MySQL error code: " << e.getErrorCode();
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;*/
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
 }
-void SQL::setTable(std::string table) {
-	this->table = table;
-}
-void SQL::setIp(std::string ip) {
-	this->ip = ip;
-}
-void SQL::setUser(std::string user) {
-	this->user = user;
-}
-void SQL::setPass(std::string password) {
-	this->password = password;
-}
-void SQL::setPort(std::string port) {
-	this->port = port;
-}
-void SQL::setValue(std::string value) {
-	this->value = value;
-}
-
-
 
 //Methods definition
-void SQL::query() {
+int SQL::connect(std::string l_IP, std::string l_Port, std::string l_User, std::string l_Pass) {
+	try
+	{
+		driver = get_driver_instance();
+
+		conn = driver->connect(tcp + l_IP + separator + l_Port, l_User, l_Pass);
+
+		connStatus = true;
+
+	}
+	catch (sql::SQLException& e)
+	{
+		std::string _ExceptionString = e.what();
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+
+}
+int SQL::connect(std::string l_Host, std::string l_User, std::string l_Pass) {
+	try
+	{
+		driver = get_driver_instance();
+
+		conn = driver->connect(tcp + l_Host, l_User, l_Pass);
+
+		connStatus = true;
+
+	}
+	catch (sql::SQLException& e)
+	{
+		std::string _ExceptionString = e.what();
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+}
+
+int SQL::query(std::string query) {
+	try
+	{
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+	}
+	catch (sql::SQLException& e)
+	{
+		std::string _ExceptionString = e.what();
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+}
+int SQL::query(std::string l_Db, std::string l_Table, std::vector<std::string> &l_query) {
 	try
 	{
 
-		std::string query = "SELECT * FROM " + getTable() + ";";
-		std::cout << query << std::endl;
-		conn->setSchema(getDatabase());
+		std::string query = "SELECT * FROM " + l_Table + ";";
+		
+		conn->setSchema(l_Db);
 		stmt = conn->createStatement();
 		res = stmt->executeQuery(query);
-				
+		
+		
+		
+		
 		while (res->next()) {		
 			
-			for (int i = 1; i <= res->getMetaData()->getColumnCount(); i++) {
-				std::cout << res->getString(i) << " ";
-			}
-			std::cout << "" << std::endl;
+			for (int i = 0; i < res->getMetaData()->getColumnCount(); i++) {
+				
+				l_query.push_back(res->getString(i+1));
+				
+			}	
 			
+			
+			
+		}
+		
+	}
+	catch (sql::SQLException &e)
+	{
+		/*std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
+		std::cout << "# ERR: " << e.what();
+		std::cout << " (MySQL error code: " << e.getErrorCode();
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;*/
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+}
+int SQL::query(std::string l_Db, std::string l_Table, std::string l_Field, std::vector<std::string>& l_query) {
+	try
+	{
+		std::string query = "SELECT " + l_Field + " FROM " + l_Table + ";";
+		conn->setSchema(l_Db);
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+		l_query.clear();
+		while (res->next()) {
+			l_query.push_back(res->getString(1));
 		}
 	}
 	catch (sql::SQLException &e)
 	{
-		std::cout << "# ERR: SQLException in " << __FILE__;
+		/*std::cout << "# ERR: SQLException in " << __FILE__;
 		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
 		std::cout << "# ERR: " << e.what();
 		std::cout << " (MySQL error code: " << e.getErrorCode();
-		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;*/
+		return _EXCEPTION_ERROR_;
 	}
+	return _SUCCESS_;
 }
-void SQL::query(std::string field) {
+
+
+
+
+void SQL::insert() {
+	
+
+	
 	try
 	{
-
-		std::string query = "SELECT * FROM " + getTable() + ";";
-		std::cout << query << std::endl;
+		std::string queryC = "SELECT * FROM " + getTable() + ";";
 		conn->setSchema(getDatabase());
 		stmt = conn->createStatement();
-		res = stmt->executeQuery(query);
+		res = stmt->executeQuery(queryC);
 
-		while (res->next()) {
-
-			std::cout << res->getString(field) << " ";
-
+		
+		conn->setSchema(getDatabase());
+		stmt = conn->createStatement();
+		
+		LOG(res->getMetaData()->getColumnCount());
+		
+		
+		std::vector <std::string> fieldVector;
+			
+		
+		
+		for(int i = 0; i < res->getMetaData()->getColumnCount(); i++) {
+			fieldVector.push_back(res->getMetaData()->getColumnName(i + 1));
+			
 		}
-	}
-	catch (sql::SQLException& e)
-	{
-		std::cout << "# ERR: SQLException in " << __FILE__;
-		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
-		std::cout << "# ERR: " << e.what();
-		std::cout << " (MySQL error code: " << e.getErrorCode();
-		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-	}
-}
-void SQL::fieldQuery() {
-	try
-	{
-
-		std::string query = "SELECT * FROM " + getTable() + ";";
-		std::cout << query << std::endl;
-		conn->setSchema(getDatabase());
-		stmt = conn->createStatement();
-		res = stmt->executeQuery(query);
+		
 		
 
-		for (int i = 1; i <= res->getMetaData()->getColumnCount(); i++) {
+		std::vector <std::string> valuesVector;
+		
+		for (int i = 0; i < res->getMetaData()->getColumnCount(); i++) {
+			std::cout << res->getMetaData()->getColumnName(i + 1) << ": "; 
+			std::cout << res->getMetaData()->getColumnTypeName(i + 1) << std::endl;
+			std::string values;
 			
-			std::cout << res->getMetaData()->getColumnLabel(i) << " ";
-
+			valuesVector.push_back(values);
 		}
-	}
-	catch (sql::SQLException& e)
-	{
-		std::cout << "# ERR: SQLException in " << __FILE__;
-		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
-		std::cout << "# ERR: " << e.what();
-		std::cout << " (MySQL error code: " << e.getErrorCode();
-		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
-	}
-}
-void SQL::connect() {
-	try
-	{
-		std::cout << "Connecting to database..." << std::endl;
-		driver = get_driver_instance();
+		
+		std::string strt;
+		strt = "INSERT INTO";
+		strt += " " + getTable() + "(";
+		for (int i = 0; i < fieldVector.size(); i++) {
+			strt += fieldVector[i];
+			if (i != fieldVector.size() - 1) {
+				strt += ",";
+			}
+		}
+		strt += ") VALUES (";
+		for (int i = 0; i < valuesVector.size(); i++) {
+			strt += "'" + valuesVector[i] + "'";
+			if (i != valuesVector.size() - 1) {
+				strt += ",";
+			}
+		}
+		strt += ");";
 
-		std::cout << "Conecting to " << tcp << ip << separator << port << std::endl;
-		conn = driver->connect(tcp + getIp() + separator + getPort(), getUser(), getPass());
+					
+		res=stmt->executeQuery(strt);
 
-		connStatus = true;
-		std::cout << "Connected to database" << std::endl;
-	}
-	catch (sql::SQLException& e)
-	{
-		std::cout << "ERROR: " << e.what() << std::endl;
-
-	}
-}
-void SQL::insert() {
-	try
-	{
-		std::string query = "INSERT INTO " + getTable() + " (" + getField() + ", Name) VALUES (" + getValue() + ", 'Bobby');";
-		std::cout << query << std::endl;
-		conn->setSchema(getDatabase());
-		stmt = conn->createStatement();
-		stmt->execute(query);
+		LOG("Insert completed!!!");		
+		
+		
 	}
 	catch (sql::SQLException &e)
 	{

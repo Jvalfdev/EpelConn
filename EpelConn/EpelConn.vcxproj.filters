@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectDB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Queries.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -29,10 +26,10 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectDB.h">
+    <ClInclude Include="Queries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Queries.h">
+    <ClInclude Include="Errors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
