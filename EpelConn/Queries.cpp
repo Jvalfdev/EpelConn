@@ -78,11 +78,58 @@ int SQL::getDatabaseList(std::vector<std::string>& l_databaseList) {
 	}
 	catch (sql::SQLException& e)
 	{
-		/*std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "# ERR: SQLException in " << __FILE__;
 		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
 		std::cout << "# ERR: " << e.what();
 		std::cout << " (MySQL error code: " << e.getErrorCode();
-		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;*/
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+}
+
+int SQL::getTableList(std::vector <std::string>& tableList, std::string database) {
+	try
+	{
+		
+		std::string query = "SHOW TABLES FROM " + database + " ;";
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+		tableList.clear();
+		while (res->next()) {
+			tableList.push_back(res->getString(1));
+		}
+	}
+	catch (sql::SQLException& e)
+	{
+		std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
+		std::cout << "# ERR: " << e.what();
+		std::cout << " (MySQL error code: " << e.getErrorCode();
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+}
+
+int SQL::getTableFields(std::vector<std::string>& tableFields, std::string database, std::string table) {
+	try
+	{
+		std::string query = "SHOW COLUMNS FROM " + database + "." + table + ";";
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+		tableFields.clear();
+		while (res->next()) {
+			tableFields.push_back(res->getString(1));
+		}
+	}
+	catch (sql::SQLException& e)
+	{
+		std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
+		std::cout << "# ERR: " << e.what();
+		std::cout << " (MySQL error code: " << e.getErrorCode();
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
 		return _EXCEPTION_ERROR_;
 	}
 	return _SUCCESS_;
@@ -166,11 +213,11 @@ int SQL::query(std::string l_Db, std::string l_Table, std::vector<std::string> &
 	}
 	catch (sql::SQLException &e)
 	{
-		/*std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "# ERR: SQLException in " << __FILE__;
 		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
 		std::cout << "# ERR: " << e.what();
 		std::cout << " (MySQL error code: " << e.getErrorCode();
-		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;*/
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
 		return _EXCEPTION_ERROR_;
 	}
 	return _SUCCESS_;
@@ -189,11 +236,11 @@ int SQL::query(std::string l_Db, std::string l_Table, std::string l_Field, std::
 	}
 	catch (sql::SQLException &e)
 	{
-		/*std::cout << "# ERR: SQLException in " << __FILE__;
+		std::cout << "# ERR: SQLException in " << __FILE__;
 		std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << std::endl;
 		std::cout << "# ERR: " << e.what();
 		std::cout << " (MySQL error code: " << e.getErrorCode();
-		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;*/
+		std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
 		return _EXCEPTION_ERROR_;
 	}
 	return _SUCCESS_;
@@ -276,19 +323,21 @@ void SQL::insert() {
 	}
 }
 
-//Developing
-void SQL::createDatabase() {
 
-	/*std::string query = "CREATE DATABASE " + getDatabase() + ";";
-	std::cout << query << std::endl;
-	conn->setSchema(getDatabase());
-	stmt = conn->createStatement();
-	stmt->execute("USE " + getDatabase());
-	stmt->execute(query);
-	stmt->execute("DROP TABLE IF EXISTS " + getTable());
-	stmt->execute("CREATE TABLE " + getTable() + "(id INT, label CHAR(1))");
-	stmt->execute("INSERT INTO test(id, label) VALUES (1, 'a')");
-	std::cout << "Database Created" << std::endl;*/
+int SQL::createDatabase(std::string database) {
+	try
+	{
+		std::string query = "CREATE DATABASE " + database + ";";
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+	}
+	catch (sql::SQLException& e)
+	{
+		std::string _ExceptionString = e.what();
+		return _EXCEPTION_ERROR_;
+	}
+	return _SUCCESS_;
+	
 }
 
 
@@ -296,4 +345,6 @@ void SQL::createDatabase() {
 SQL::~SQL() {
 	delete stmt;
 	delete conn;
+	delete res;
+	delete &driver;
 }

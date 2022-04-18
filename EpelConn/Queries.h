@@ -46,6 +46,8 @@ private:
 	std::vector <std::string> m_vectorValues;
 	std::vector <std::string> databasesList;
 	std::vector < std::string > queryValues;
+	std::vector <std::string> tableList;
+	
 	
 	bool connStatus = false;
 	
@@ -77,7 +79,13 @@ public:
 	std::string getPort();
 	std::string getValue();
 	
-	int getDatabaseList(std::vector<std::string>& l_databaseList);//It returns  a database list into a vector
+	int getDatabaseList(std::vector<std::string> &databaseList);//It returns  a database list into a vector
+
+	int getTableList(std::vector <std::string> &tableList, std::string database);//It returns a table list into a vector
+
+	
+	int getTableFields( std::vector<std::string> &tableFields, std::string database, std::string table);//It returns a table fields into a vector
+	
 	
 	std::vector < std::string> getQueryValues();
 
@@ -91,7 +99,7 @@ public:
 	
 
 	void insert();
-	void createDatabase(); //Developing
+	int createDatabase(std::string database); //Developing
 	
 	
 	

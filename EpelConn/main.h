@@ -5,6 +5,7 @@
 
 //External includes
 #include <iostream>
+#include <windows.h>
 
 //MySQL includes
 
