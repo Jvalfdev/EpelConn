@@ -184,16 +184,28 @@ namespace XS
 	}
 
 	//Clients
-	int addClient(std::vector <std::string> valueVector) {
+	int addCustomer(std::vector <std::string> customer) {
 		try
 		{
-			std::vector <std::string> fieldVector;
-			sq.getTableFields(fieldVector, "mbd", "customers");
+			std::vector <std::string> fieldVector = {
+				"Code",
+				"CIF",
+				"Name",
+				"Address",
+				"City",
+				"ZIPCode",
+				"Country",
+				"Phone1",
+				"Phone2",
+				"Website",
+				"Email",
+				"Discount"
+			};			
 
-			sq.insert("mbd", "customers", fieldVector, valueVector);
+			int err = sq.insert("mbd", "customers", fieldVector, customer);
 
-			if (sq.insert("mbd", "customers", fieldVector, valueVector) == _EXCEPTION_ERROR_) {
-				sq.update("mbd", "families", fieldVector, valueVector, "Code = " + valueVector[0]);
+			if (err == _EXISTING_KEYCODE_) {
+				sq.update("mbd", "customers", fieldVector, customer, "Code = " + customer[0]);
 				return _CLIENT_MODIFIED_;
 			}
 			return _CLIENT_ADDED_;
@@ -202,7 +214,7 @@ namespace XS
 			return _CLIENT_NOT_ADDED_;
 		}
 	}
-	int deleteClient(int id) {
+	int deleteCustomer(int id) {
 		try
 		{
 			std::string dInf = "Code = " + std::to_string(id);

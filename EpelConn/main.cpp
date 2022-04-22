@@ -11,23 +11,22 @@
 
 int main(void)
 {
-	std::vector<std::string> article = {
-		"44", 
-		"TestArticle",
-		"",
-		"",
-		"",
-		"",
-		"",
-		"44",
-		"",
-		"",
-		"",
-		""		
+	std::vector<std::string> customer = {
+        "25",  //Codigo (obligatorio)	
+        "B4512547",   //CIF (obligatorio)	
+        "Grupo Epelsa", //Nombre	
+        "C/ punto net, 3", //Dirección	
+        "Madrid", //Ciudad		
+        "28805", //Código postal		
+        "España", //País		
+        "652114558",	//Teléfono	
+        "", //Teléfono 2 (Vacío)	
+        "grupoepelsa.com", //Página web	
+        "", //Email (Vacío)
+        "" //Descuento (Vacío)
 	};
 	LOG(XS::connect(_IP, _PORT));
 	LOG(XS::getStatus());
-	LOG(XS::addArticle(article));	
-	LOG(XS::deleteArticle(44));
+	LOG(XS::addCustomer(customer));
 }
 

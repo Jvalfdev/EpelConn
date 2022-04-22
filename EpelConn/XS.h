@@ -22,8 +22,8 @@ namespace XS
 	int deleteFamily(int id);
 
 	//Clients
-	int addClient(std::vector<std::string>valueVector);
-	int deleteClient(int id);
+	int addCustomer(std::vector<std::string>valueVector);
+	int deleteCustomer(int id);
 
 	//Vendors
 	int addVendor(std::vector<std::string>valueVector);
