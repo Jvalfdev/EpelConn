@@ -1,3 +1,4 @@
+
 #pragma once
 //Local includes
 #include "Errors.h"
@@ -14,6 +15,17 @@
 #include <jdbc/cppconn/resultset.h>
 #include <jdbc/cppconn/statement.h>
 #include <jdbc/cppconn/prepared_statement.h>
+#include <jdbc/cppconn/connection.h>
+#include <jdbc/mysql_connection.h>
+#include <jdbc/mysql_driver.h>
+#include <jdbc/mysql_error.h>
+
+
+
+
+
+
+
 
 
 
@@ -24,11 +36,18 @@ class SQL
 
 {
 private:
+	
+	
+	
 	//Database objects
-	sql::Connection* conn;
+	sql::Connection* conn;	
 	sql::Statement* stmt;
 	sql::ResultSet* res;
 	sql::Driver* driver;
+	
+
+	//Connection properties 
+	
 
 	//Database variables
 	std::string database;
@@ -52,7 +71,9 @@ private:
 	bool connStatus = false;
 	
 	
+	
 public:
+
 	
 	//Constructors declaration
 	SQL();	
@@ -65,8 +86,7 @@ public:
 	void setUser(std::string user);
 	void setPass(std::string password);
 	void setPort(std::string port);	
-	void setValue(std::string value);	
-	//void setQueryValues(std::vector < std::string> queryValues);
+	void setValue(std::string value);		
 	
 	
 	//Getters declaration
@@ -77,34 +97,32 @@ public:
 	std::string getUser();
 	std::string getPass();
 	std::string getPort();
-	std::string getValue();
-	
+	std::string getValue();	
 	int getDatabaseList(std::vector<std::string> &databaseList);//It returns  a database list into a vector
-
-	int getTableList(std::vector <std::string> &tableList, std::string database);//It returns a table list into a vector
-
-	
-	int getTableFields( std::vector<std::string> &tableFields, std::string database, std::string table);//It returns a table fields into a vector
-	
+	int getTableList(std::vector <std::string> &tableList, std::string database);//It returns a table list into a vector	
+	int getTableFields( std::vector<std::string> &tableFields, std::string database, std::string table);//It returns a table fields into a vector	
 	
 	std::vector < std::string> getQueryValues();
 
 	//Methods declaration
 	int connect(std::string l_IP, std::string l_Port, std::string l_User, std::string l_Pass);
 	int connect(std::string l_Host, std::string l_User, std::string l_Pass);
+	int reset();
+	bool isConnected();
 	
-	int query(std::string query);
-	int query(std::string l_Db, std::string l_Table, std::vector<std::string>& l_query);
-	int query(std::string l_Db, std::string l_Table, std::string l_Field, std::vector<std::string>& l_query);
+	int query(std::string database, std::string query);
+	int query(std::string database, std::string l_Table, std::vector<std::vector<std::string>>& l_query);
+	int query(std::string database, std::string l_Table, std::string l_Field, std::vector<std::vector<std::string>>& l_query);	
+	int insert(std::string database, std::string table, std::vector<std::string> fieldVector, std::vector<std::string> valueVector);	
+	int update(std::string database, std::string table, std::vector<std::string> fieldVector, std::vector<std::string> valueVector, std::string where);	
+	int update(std::string database, std::string table, std::vector<std::string> fieldValueVector, std::string where);
+	int deleteSQL(std::string database, std::string table, std::string where);	
+	int createDatabase(std::string database); 	
+
 	
 
-	void insert();
-	int createDatabase(std::string database); //Developing
 	
-	
-	
-	
-	
+		
 	//Destructors declaration 
 	~SQL();
 };

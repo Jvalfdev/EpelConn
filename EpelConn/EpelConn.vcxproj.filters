@@ -21,6 +21,9 @@
     <ClCompile Include="Queries.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -30,6 +33,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Errors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

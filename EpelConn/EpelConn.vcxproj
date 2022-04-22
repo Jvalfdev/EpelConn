@@ -145,11 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="XS.cpp" />
     <ClCompile Include="Queries.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Errors.h" />
+    <ClInclude Include="XS.h" />
     <ClInclude Include="Queries.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

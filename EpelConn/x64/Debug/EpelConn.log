@@ -1,7 +1,15 @@
-﻿  Queries.cpp
-C:\Users\Jose Vallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(156,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jose Vallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(227,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jose Vallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(236,21): warning C4018: '<': signed/unsigned mismatch
+﻿  XS.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(81,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(92,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(103,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(166,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(181,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(200,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(212,26): warning C4101: 'e': unreferenced local variable
+  Queries.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(207,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(233,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.cpp(344,28): warning C4101: 'e': unreferenced local variable
   main.cpp
   Generating Code...
-  EpelConn.vcxproj -> C:\Users\Jose Vallejo\source\repos\Jvalfdev\EpelConn\x64\Debug\EpelConn.exe
+  EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\x64\Debug\EpelConn.exe

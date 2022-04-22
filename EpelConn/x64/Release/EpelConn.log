@@ -1,7 +1,7 @@
 ﻿  main.cpp
   Generating code
-  0 of 240 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  0 of 233 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  EpelConn.vcxproj -> C:\Users\Jose Vallejo\source\repos\Jvalfdev\EpelConn\x64\Release\EpelConn.exe
+  EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\x64\Release\EpelConn.exe
