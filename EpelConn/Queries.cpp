@@ -289,9 +289,12 @@ int SQL::update(std::string database, std::string table, std::vector<std::string
 			}
 		}
 		
+		
+		
 		std::string query = "UPDATE " + table + " SET " + fields + " WHERE " + where + ";";
 		conn->setSchema(database);
 		stmt = conn->createStatement();
+		LOG(query);
 		res = stmt->executeQuery(query);
 	}
 	catch (sql::SQLException &e)
@@ -331,6 +334,20 @@ int SQL::deleteSQL(std::string database, std::string table, std::string where) {
 	} 
 	catch (sql::SQLException& e)
 	{		
+		return e.getErrorCode();
+	}
+}
+int SQL::deleteSQL(std::string database, std::string table) {
+	try
+	{
+		std::string query = "DELETE FROM " + table + ";";
+		conn->setSchema(database);
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+		return _SUCCESS_;
+	}
+	catch (sql::SQLException& e)
+	{
 		return e.getErrorCode();
 	}
 }

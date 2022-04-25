@@ -117,6 +117,7 @@ public:
 	int update(std::string database, std::string table, std::vector<std::string> fieldVector, std::vector<std::string> valueVector, std::string where);	
 	int update(std::string database, std::string table, std::vector<std::string> fieldValueVector, std::string where);
 	int deleteSQL(std::string database, std::string table, std::string where);	
+	int deleteSQL(std::string database, std::string table);	
 	int createDatabase(std::string database); 	
 
 	

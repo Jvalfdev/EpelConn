@@ -27,6 +27,8 @@ int main(void)
 	};
 	LOG(XS::connect(_IP, _PORT));
 	LOG(XS::getStatus());
-	LOG(XS::addCustomer(customer));
+    LOG(XS::addNutritionalInfo("nut1", "NutText1", 1));
+    
 }
+
 

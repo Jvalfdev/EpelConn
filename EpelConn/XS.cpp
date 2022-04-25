@@ -48,7 +48,16 @@ namespace XS
 	}
 	
 	//General Methods	
-	
+	int deleteTotals() {
+		sq.deleteSQL("mbd", "totals");
+		sq.deleteSQL("mbd", "totalcustomers");
+		sq.deleteSQL("mbd", "totalitems");
+		sq.deleteSQL("mbd", "totalpaymethods");
+		sq.deleteSQL("mbd", "totalvats");
+		sq.deleteSQL("mbd", "htickets");
+		sq.deleteSQL("mbd", "ltickets");
+		return _SUCCESS_;
+	}	
 
 	//Articles	
 	int addArticle(std::vector <std::string> article) {		
@@ -105,6 +114,14 @@ namespace XS
 			return _ARTICLE_DESCRIPTION_NOT_SET_;
 		}
 	}	
+	int setTareArticle(std::string tare, std::string packingTare, int Code) {
+		sq.update("mdb", "items", { "Tare", "PackingTare" }, { tare, packingTare }, "Code = " + std::to_string(Code));
+		return _SUCCESS_;
+	}
+	int deleteTareArticle(int Code) {
+		sq.update("mdb", "items", { "Tare", "PackingTare" }, { "0", "0" }, "Code = " + std::to_string(Code));
+		return _SUCCESS_;
+	}
 	
 	//Families	
 	int addFamily(std::vector <std::string> family, int dpt) {
@@ -263,15 +280,150 @@ namespace XS
 		return _SUCCESS_;
 	}
 	int addDepartmentHeader(std::string header, int opt, int Code) {
+		try
+		{
+			std::string strDpt;
+			strDpt.clear();
+			switch (opt) {
+			case 1:
+				strDpt = "Text1";
+				break;
+			case 2:
+				strDpt = "Text2";
+				break;
+			case 3:
+				strDpt = "Text3";
+				break;
+			case 4:
+				strDpt = "Text4";
+				break;
+			case 5:
+				strDpt = "Text5";
+				break;
+			default:
+				return _INVALID_DEPARTMENT_;
+			};
 
-		std::vector<std::string>fieldValueVector;
-		fieldValueVector.push_back("Text1 = '" + header + "'");
+			std::vector <std::string> fieldVector = {
+				"Code",
+				strDpt
+			};
 
-		sq.update("mbd", "departments", fieldValueVector, "Code = " + std::to_string(Code));
+			std::vector <std::string> valueVector = {
+				std::to_string(Code),
+				header
+			};
 
-		return _SUCCESS_;
+			sq.update("mbd", "departments", fieldVector, valueVector, "Code = " + valueVector[0]);
+
+
+
+			return _SUCCESS_;
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
 
 	}
+	int addDepartmentFooter(std::string footer, int opt, int Code) {
+
+		try
+		{
+			std::string strDpt;
+			strDpt.clear();
+			switch (opt) {
+			case 1:
+				strDpt = "Text6";
+				break;
+			case 2:
+				strDpt = "Text7";
+				break;
+			case 3:
+				strDpt = "Text8";
+				break;
+			case 4:
+				strDpt = "Text9";
+				break;
+			case 5:
+				strDpt = "Text10";
+				break;
+			default:
+				return _INVALID_DEPARTMENT_;
+			};
+
+			std::vector <std::string> fieldVector = {
+				"Code",
+				strDpt
+			};
+
+			std::vector <std::string> valueVector = {
+				std::to_string(Code),
+				footer
+			};
+
+			sq.update("mbd", "departments", fieldVector, valueVector, "Code = " + valueVector[0]);
+
+
+
+			return _SUCCESS_;
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+
+
+	}
+	int addDepartmentLabel(std::string label, int opt, int Code) {
+
+		try
+		{
+			std::string strDpt;
+			strDpt.clear();
+			switch (opt) {
+			case 1:
+				strDpt = "LabelText1";
+				break;
+			case 2:
+				strDpt = "LabelText2";
+				break;
+			case 3:
+				strDpt = "LabelText3";
+				break;
+			case 4:
+				strDpt = "LabelText4";
+				break;
+			case 5:
+				strDpt = "LabelText5";
+				break;
+			default:
+				return _INVALID_DEPARTMENT_;
+			};
+
+			std::vector <std::string> fieldVector = {
+				"Code",
+				strDpt
+			};
+
+			std::vector <std::string> valueVector = {
+				std::to_string(Code),
+				label
+			};
+
+			sq.update("mbd", "departments", fieldVector, valueVector, "Code = " + valueVector[0]);
+
+
+
+			return _SUCCESS_;
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+
+
+	}	
 
 	//Tares
 	int addTare(std::vector <std::string> valueVector) {
@@ -326,5 +478,194 @@ namespace XS
 		sq.deleteSQL("mbd", "scales", dInf);
 		return _SUCCESS_;
 	}
+	int addScaleHeader(std::string header, int opt, int dpt, int number) {
+		try
+		{
+			std::string strDpt;
+			strDpt.clear();
+			switch (opt) {
+			case 1:
+				strDpt = "Header1";
+				break;
+			case 2:
+				strDpt = "Header2";
+				break;
+			case 3:
+				strDpt = "Header3";
+				break;
+			case 4:
+				strDpt = "Header4";
+				break;
+			case 5:
+				strDpt = "Header5";
+				break;
+			default:
+				return _INVALID_DEPARTMENT_;
+			};
+
+			std::vector <std::string> fieldVector = {
+				
+				strDpt
+			};
+
+			std::vector <std::string> valueVector = {
+
+				
+				header
+			};
+
+			sq.update("mbd", "scales", fieldVector, valueVector, "Number =  '" + std::to_string(number) + "'" + " AND  Counter = " + "'" + std::to_string(dpt) + "'" );
+
+
+
+			return _SUCCESS_;
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+
+	}
+	int addScaleFooter(std::string footer, int opt, int dpt, int number) {
+		try
+		{
+			std::string strDpt;
+			strDpt.clear();
+			switch (opt) {
+			case 1:
+				strDpt = "Footer1";
+				break;
+			case 2:
+				strDpt = "Footer2";
+				break;
+			case 3:
+				strDpt = "Footer3";
+				break;
+			case 4:
+				strDpt = "Footer4";
+				break;
+			case 5:
+				strDpt = "Footer5";
+				break;
+			default:
+				return _INVALID_DEPARTMENT_;
+			};
+
+			std::vector <std::string> fieldVector = {
+				
+				strDpt
+			};
+
+			std::vector <std::string> valueVector = {
+				
+				footer
+			};
+
+			sq.update("mbd", "scales", fieldVector, valueVector, "Number =  '" + std::to_string(number) + "'" + " AND  Counter = " + "'" + std::to_string(dpt) + "'");
+
+
+
+			return _SUCCESS_;
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+
+	}
+
+	//Traceability
+	int addTraceability(std::string name, std::string text, int code ) {
+		try
+		{
+			std::vector <std::string> fieldVector = {
+				"Code",
+				"Name",
+				"Info"
+			};
+
+			std::vector <std::string> valueVector = {
+				std::to_string(code),
+				name,
+				text
+			};
+
+			int err = sq.insert("mbd", "traceability", fieldVector, valueVector);
+
+			if (err == _EXISTING_KEYCODE_) {
+				sq.update("mbd", "traceability", fieldVector, valueVector, "Code = " + std::to_string(code));
+				return _TRACEABILITY_MODIFIED_;
+			}
+			return _TRACEABILITY_ADDED_;
+		} catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+	}
+	int deleteTraceability(int code) {
+		try
+		{
+			int con = sq.deleteSQL("mbd", "traceability", "Code = " + std::to_string(code));
+			
+			if (con == _SUCCESS_) {
+				return _TRACEABILITY_REMOVED_;
+			}
+			else {
+				return _TRACEABILITY_NOT_REMOVED_;
+			}
+		} catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+		
+		
+	}
+
+	//Nutritional info
+	int addNutritionalInfo(std::string name, std::string text, int code) {
+		try
+		{
+			std::vector <std::string> fieldVector = {
+				"Code",
+				"Name",
+				"Info"
+			};
+
+			std::vector <std::string> valueVector = {
+				std::to_string(code),
+				name,
+				text
+			};
+
+			int err = sq.insert("mbd", "nutritionalinfo", fieldVector, valueVector);
+
+			if (err == _EXISTING_KEYCODE_) {
+				sq.update("mbd", "nutritionalinfo", fieldVector, valueVector, "Code = " + std::to_string(code));
+				return _NUTRITIONAL_MODIFIED_;
+			}
+			return _NUTRITIONAL_ADDED_;
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+	}
+	int deleteNutritionalInfo(int code) {
+		try
+		{
+			int con = sq.deleteSQL("mbd", "nutritionalinfo", "Code = " + std::to_string(code));
+
+			if (con == _SUCCESS_) {
+				return _NUTRITIONAL_REMOVED_;
+			}
+			else {
+				return _NUTRITIONAL_NOT_REMOVED_;
+			}
+		}
+		catch (std::exception& e)
+		{
+			return _EXCEPTION_ERROR_;
+		}
+	}	
 }
 
