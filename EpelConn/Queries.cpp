@@ -294,7 +294,7 @@ int SQL::update(std::string database, std::string table, std::vector<std::string
 		std::string query = "UPDATE " + table + " SET " + fields + " WHERE " + where + ";";
 		conn->setSchema(database);
 		stmt = conn->createStatement();
-		LOG(query);
+		
 		res = stmt->executeQuery(query);
 	}
 	catch (sql::SQLException &e)

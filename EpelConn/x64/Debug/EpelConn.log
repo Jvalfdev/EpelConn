@@ -1,12 +1,22 @@
 ﻿  XS.cpp
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(81,26): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(92,27): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(103,28): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(166,26): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(181,28): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(212,28): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(224,26): warning C4101: 'e': unreferenced local variable
-C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(305,28): warning C4101: 'e': unreferenced local variable
-  main.cpp
-  Generating Code...
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(90,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(101,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(112,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(194,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(209,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(240,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(252,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(279,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(292,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(318,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(335,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(381,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(429,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(478,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(581,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(628,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(658,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(674,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(706,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(723,26): warning C4101: 'e': unreferenced local variable
   EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\x64\Debug\EpelConn.exe
