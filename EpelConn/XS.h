@@ -3,6 +3,7 @@
 #include "Queries.h"
 #include "Errors.h"
 
+
 namespace XS
 {
 	//Connection Methods
@@ -12,6 +13,12 @@ namespace XS
 
 	//General Methods	
 	int deleteTotals();
+	int getLastTicketOrd();
+	std::vector<std::vector<std::string>> getTicket(int id);
+	int getTicketsPaused();
+	int getTotalCustomers();
+	int getTotalItems();
+	
 
 	//Articles	
 	int addArticle(std::vector<std::string>valueVector);
@@ -19,6 +26,8 @@ namespace XS
 	int setDescriptionArticle(std::vector <std::string> descriptions, int code);	
 	int setTareArticle(double tare,double packingTare, int code);
 	int deleteTareArticle(int code);
+	int setArticleTraceability(int code, int traceability);
+	int setArticleNutInfo(int code, int traceability);
 	
 	//Families	
 	int addFamily(std::vector<std::string> family, int dpt);

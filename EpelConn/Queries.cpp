@@ -191,28 +191,46 @@ int SQL::query(std::string database, std::string query) {
 	}
 	return _SUCCESS_;
 }
-int SQL::query(std::string database, std::string l_Table, std::vector<std::vector<std::string>> &l_query) {
+int SQL::query(std::string database, std::string query, std::vector<std::string> &queryValues) {
 	try
 	{
-		std::vector<std::string> strV;
-		std::string query = "SELECT * FROM " + l_Table + ";";		
 		conn->setSchema(database);
 		stmt = conn->createStatement();
 		res = stmt->executeQuery(query);
 		
-		
-		while (res->next()) {	
-			strV.clear();
+		if (res->next()) {
 			
-			for (int i = 0; i < res->getMetaData()->getColumnCount(); i++) {
+			for (int i = 1; i <= res->getMetaData()->getColumnCount(); i++) {
 				
-				strV.push_back(res->getString(i + 1));
-			}	
-			l_query.push_back(strV);
+				queryValues.push_back(res->getString(i));
+			}
 		}
-		
 	}
-	catch (sql::SQLException &e)
+	catch (sql::SQLException& e)
+	{
+		return e.getErrorCode();
+	}
+	return _SUCCESS_;
+}
+int SQL::v_query(std::string database, std::string query, std::vector<std::vector<std::string>>&queryValues) {
+	try
+	{
+		std::vector<std::string> row;
+		conn->setSchema(database);
+		stmt = conn->createStatement();
+		res = stmt->executeQuery(query);
+		
+
+		while (res->next()) {
+			
+			row.clear();
+			for (int i = 1; i <= res->getMetaData()->getColumnCount(); i++) {
+				row.push_back(res->getString(i));
+			}
+			queryValues.push_back(row);
+		}
+	}
+	catch (sql::SQLException& e)
 	{
 		return e.getErrorCode();
 	}

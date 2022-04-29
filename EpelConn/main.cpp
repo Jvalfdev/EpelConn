@@ -14,9 +14,10 @@ int main(void)
 	
 	LOG(XS::connect(_IP, _PORT));
 	LOG(XS::getStatus());
-	
-    
-    
+
+	LOG(XS::getTotalCustomers());
+	LOG(XS::getTotalItems());
+	    
 }
 
 

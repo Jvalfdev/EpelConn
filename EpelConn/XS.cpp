@@ -1,8 +1,12 @@
 #include "XS.h"
+#include <filesystem>
 
 #define LOG(x) std::cout << x << std::endl
 
 SQL sq;
+
+
+
 
 namespace XS
 {
@@ -47,7 +51,20 @@ namespace XS
 		sq.reset();
 	}
 
-	//General Methods	
+	
+	//Get Time function
+	std::string CurrentDate()
+	{
+		std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+
+		char buf[16] = { 0 };
+		std::strftime(buf, sizeof(buf), "%Y-%m-%d", std::localtime(&now));
+
+		return std::string(buf);
+	}
+
+	//General Methods
+	
 	int deleteTotals() {
 		sq.deleteSQL("mbd", "totals");
 		sq.deleteSQL("mbd", "totalcustomers");
@@ -58,6 +75,277 @@ namespace XS
 		sq.deleteSQL("mbd", "ltickets");
 		return _SUCCESS_;
 	}
+	std::vector<std::vector<std::string>> getLastTicketOrdVector() {
+		std::vector <std::string> lastTicketOrdHeader;
+		std::vector<std::vector<std::string>>  lastTicketOrdLines;
+		std::vector<std::vector<std::string>> finalVector;
+		std::string queryHeader;
+		std::string queryLines;
+		
+		queryHeader = "SELECT * FROM htickets WHERE Captured IS NULL ORDER BY Id ASC LIMIT 1";
+		
+		
+		sq.query("mbd", queryHeader, lastTicketOrdHeader);
+		
+		queryLines = "SELECT * FROM ltickets WHERE IdHTicket =  '" + lastTicketOrdHeader[0] + "'";
+
+		
+		sq.v_query("mbd", queryLines, lastTicketOrdLines);
+		
+		sq.update("mbd", "htickets", {"Captured"}, {"*"}, "Id = " + lastTicketOrdHeader[0]);
+		
+		
+		
+		finalVector.push_back(lastTicketOrdHeader);
+
+		for (int i = 0; i < lastTicketOrdLines.size(); i++) {
+			finalVector.push_back(lastTicketOrdLines[i]);
+		}
+		
+		return finalVector;
+	}
+	int getLastTicketOrd() {
+		std::vector<std::vector<std::string>> vct;
+		std::string name;
+		int ctr = 0;
+		vct = getLastTicketOrdVector();
+		bool l_bGood = true;
+		
+		
+		std::filesystem::create_directory("Not_orderer_tickets");
+		
+
+		std::ifstream myfile1;		
+
+	
+		do {
+			if (ctr == 0) {
+				name = "Not_orderer_tickets/ticket" + vct[0][0] + ".txt";
+			}
+			else {
+				name = "Not_orderer_tickets/ticket" + vct[0][0] + "_" + std::to_string(ctr) + ".txt";
+			}
+			
+			myfile1.open(name, std::ifstream::in);
+			
+			l_bGood = myfile1.good();
+			ctr++;
+		} while (l_bGood);		
+		
+		std::ofstream myfile(name);
+
+		if (myfile.is_open())
+		{
+			for (int i = 0; i < vct.size(); i++) {
+				for (int j = 0; j < vct[i].size(); j++) {
+					myfile << vct[i][j] << " ";
+				}
+				myfile << "\n";
+			}
+			myfile.close();
+			return _SUCCESS_;
+		}
+		else {
+			return _FAILED_;
+		}
+		
+	}
+	std::vector<std::vector<std::string>> getTicket(int id) {
+		std::vector <std::string> ticketHeader;
+		std::vector<std::vector<std::string>>  ticketLines;
+		std::vector<std::vector<std::string>> finalVector;
+		std::string queryHeader;
+		std::string queryLines;
+		
+		queryHeader = "SELECT * FROM htickets WHERE Id = " + std::to_string(id);
+		
+		
+		sq.query("mbd", queryHeader, ticketHeader);
+		
+		queryLines = "SELECT * FROM ltickets WHERE IdHTicket =  '" + ticketHeader[0] + "'";
+
+		
+		sq.v_query("mbd", queryLines, ticketLines);
+		
+		
+		
+		finalVector.push_back(ticketHeader);
+
+		for (int i = 0; i < ticketLines.size(); i++) {
+			finalVector.push_back(ticketLines[i]);
+		}
+		
+		return finalVector;
+	}
+	std::vector<std::vector<std::string>> getTicketsPausedVector() {
+		std::vector<std::string> ticketHeader;
+		std::vector<std::vector<std::string>>  ticketLines;
+		std::vector<std::vector<std::string>> finalVector;
+		std::string queryHeader;
+		std::string queryLines;
+		
+		queryHeader = "SELECT * FROM htickets WHERE Status = 'S' ORDER BY Id ASC LIMIT 1";
+			
+		sq.query("mbd", queryHeader, ticketHeader);
+		
+		
+		queryLines = "SELECT * FROM ltickets WHERE IdHTicket =  '" + ticketHeader[0] + "'";				
+	    sq.v_query("mbd", queryLines, ticketLines);
+		
+				
+	}	
+	int getTicketsPaused() {
+		std::vector<std::vector<std::string>> ticketHeader;
+		std::vector<std::vector<std::string>>  ticketLines;
+		std::vector<std::vector<std::string>> finalVector;
+		std::string queryHeader;
+		std::string queryLines;
+		std::string name;
+		bool l_bGood = true;
+		
+		
+
+		std::filesystem::create_directory("Paused_tickets");
+		
+
+		queryHeader = "SELECT * FROM htickets WHERE Status = 'C' AND Captured IS NULL ORDER BY Id ASC";
+		
+		
+
+		sq.v_query("mbd", queryHeader, ticketHeader);
+		for (int s = 0; s < ticketHeader.size(); s++) {
+			sq.update("mbd", "htickets", {"Captured"}, {"*"}, "Id = " + ticketHeader[s][0]);
+		}
+		
+		
+		
+		for (int i = 0; i < ticketHeader.size(); i++) {
+			finalVector.clear();
+			
+			finalVector.push_back(ticketHeader[i]);
+			
+			queryLines = "SELECT * FROM ltickets WHERE IdHTicket =  '" + ticketHeader[i][0] + "'";
+			ticketLines.clear();
+			
+			sq.v_query("mbd", queryLines, ticketLines);
+			
+			
+			
+			for (int j = 0; j < ticketLines.size(); j++) {
+				finalVector.push_back(ticketLines[j]);
+			}
+			
+			std::ifstream myfile1(name);
+			
+					
+			name = "Paused_tickets/ticket_paused" + finalVector[0][0] + "-" + CurrentDate() + ".txt";
+							
+				
+
+			std::ofstream myfile(name);
+
+			if (myfile.is_open())
+			{
+				for (int a = 0; a < finalVector.size(); a++) {
+					for (int s = 0; s < finalVector[a].size(); s++) {
+						myfile << finalVector[a][s] << " ";
+					}
+					myfile << "\n";
+				}
+				myfile.close();
+				
+			}
+			else {
+				return _FAILED_;
+			}
+			
+		}
+		return _SUCCESS_;
+		
+	}
+	int getTotalItems() {
+		//Variables Declarations
+		std::vector<std::vector<std::string>> art;
+		
+		std::string articleQuery;
+		
+		std::string articleName;
+		
+		
+		std::filesystem::create_directory("Totals");
+		//Articles
+		std::filesystem::create_directory("Totals\\Article_totals");
+		articleQuery = "SELECT * FROM totalitems ORDER BY Date ASC";
+		sq.v_query("mbd", articleQuery, art);
+		LOG(art.size());
+
+		articleName = "Totals/TotalItems/totalitems -" + CurrentDate() + ".txt";
+
+
+
+		std::ofstream myitemfile(articleName);
+		
+
+		if (myitemfile.is_open())
+		{
+			for (int a = 0; a < art.size(); a++) {
+				for (int s = 0; s < art[a].size(); s++) {
+					myitemfile << art[a][s] << " ";
+				}
+				myitemfile << "\n";
+			}
+			myitemfile.close();
+			
+			
+		}
+		else {
+			return _FAILED_;
+		}
+		
+		
+		return _SUCCESS_;
+	}
+	int getTotalCustomers() {
+		std::vector<std::vector<std::string>> vend;
+		std::string vendorQuery;
+		std::string vendorName;
+		//Customers
+		std::filesystem::create_directory("Totals");
+		
+		std::filesystem::create_directory("Totals\\TotalCustomers");
+		
+		vendorQuery = "SELECT * FROM totalcustomers ";
+		sq.v_query("mbd", vendorQuery, vend);
+
+		vendorName = "Totals/TotalCustomers/totalcustomers -" + CurrentDate() + ".txt";
+
+
+
+		std::ofstream myvendorfile(vendorName);
+
+
+		if (myvendorfile.is_open())
+		{
+			for (int a = 0; a < vend.size(); a++) {
+				for (int s = 0; s < vend[a].size(); s++) {
+					myvendorfile << vend[a][s] << " ";
+				}
+				myvendorfile << "\n";
+			}
+			myvendorfile.close();
+
+
+		}
+		else {
+			return _FAILED_;
+		}
+		return _SUCCESS_;
+	}
+	
+		
+		
+		
+
 
 	//Articles	
 	int addArticle(std::vector <std::string> article) {
@@ -133,6 +421,32 @@ namespace XS
 		}
 		else {
 			return _ARTICLE_TARE_NOT_REMOVED_;
+		}
+	}
+	int setArticleTraceability(int code, int traceability) {
+		try {
+			int ctr = sq.update("mdb", "items", { "Traceability" }, { std::to_string(traceability) }, "Code = " + std::to_string(code));
+			if (ctr == _SUCCESS_) {
+				return _ARTICLE_TRACEABILITY_SET_;
+			}
+			else {
+				return _ARTICLE_TRACEABILITY_NOT_SET_;
+			}
+		} catch (std::exception& e) {
+			return _EXCEPTION_ERROR_;
+		}		
+	}
+	int setArticleNutInfo(int code, int nutinfo) {
+		try {
+			int ctr = sq.update("mdb", "items", { "NutInfo" }, { std::to_string(nutinfo) }, "Code = " + std::to_string(code));
+			if (ctr == _SUCCESS_) {
+				return _ARTICLE_NUTINFO_SET_;
+			}
+			else {
+				return _ARTICLE_NUTINFO_NOT_SET_;
+			}
+		} catch (std::exception& e) {
+			return _EXCEPTION_ERROR_;
 		}
 	}
 

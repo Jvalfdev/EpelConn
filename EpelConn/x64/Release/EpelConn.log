@@ -1,7 +1,38 @@
-﻿  main.cpp
+﻿  XS.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(378,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(390,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(402,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(435,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(448,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(510,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(526,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(558,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(570,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(598,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(612,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(644,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(664,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(716,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(760,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(810,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(853,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(903,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(948,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(982,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(997,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1025,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1040,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1093,28): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1137,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1186,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1230,26): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1259,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1276,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1308,27): warning C4101: 'e': unreferenced local variable
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\XS.cpp(1325,27): warning C4101: 'e': unreferenced local variable
   Generating code
-  4 of 228 functions ( 1.8%) were compiled, the rest were copied from previous compilation.
+  2 of 548 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   EpelConn.vcxproj -> C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\x64\Release\EpelConn.exe

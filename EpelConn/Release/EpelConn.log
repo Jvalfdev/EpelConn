@@ -1,0 +1,6 @@
+﻿  XS.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.h(14,10): fatal error C1083: Cannot open include file: 'jdbc/cppconn/driver.h': No such file or directory
+  Queries.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.h(14,10): fatal error C1083: Cannot open include file: 'jdbc/cppconn/driver.h': No such file or directory
+  main.cpp
+C:\Users\jmvallejo\source\repos\Jvalfdev\EpelConn\EpelConn\Queries.h(14,10): fatal error C1083: Cannot open include file: 'jdbc/cppconn/driver.h': No such file or directory

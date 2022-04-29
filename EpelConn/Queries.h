@@ -8,6 +8,10 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include <fstream>
+#include <filesystem>
+#include <chrono>
+#include <ctime>
 
 //MySQL includes
 #include <jdbc/cppconn/driver.h>
@@ -111,7 +115,8 @@ public:
 	bool isConnected();
 	
 	int query(std::string database, std::string query);
-	int query(std::string database, std::string l_Table, std::vector<std::vector<std::string>>& l_query);
+	int query(std::string database, std::string query, std::vector<std::string> &queryValues);
+	int v_query(std::string database, std::string query, std::vector<std::vector<std::string>> &queryValues);		
 	int query(std::string database, std::string l_Table, std::string l_Field, std::vector<std::vector<std::string>>& l_query);	
 	int insert(std::string database, std::string table, std::vector<std::string> fieldVector, std::vector<std::string> valueVector);	
 	int update(std::string database, std::string table, std::vector<std::string> fieldVector, std::vector<std::string> valueVector, std::string where);	
