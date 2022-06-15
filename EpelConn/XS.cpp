@@ -13,8 +13,8 @@ namespace XS
 	//Connection Methods
 	int connect(std::string ip, std::string port) {
 
-		std::string user = "epelMaster";
-		std::string password = "epelsa";
+		std::string user = "";
+		std::string password = "";
 		system(("Ping -n 1 " + ip + " > NUL").c_str());
 		if (system(("Ping -n 1 " + ip + " > NUL").c_str()) == 0) {
 			int status = sq.connect(ip, port, user, password);
